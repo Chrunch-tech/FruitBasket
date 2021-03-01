@@ -1,0 +1,47 @@
+{% extends "Base/user_authen.html" %}
+{% block content %}
+    <div class="container">
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="middle-box" style="margin-left: 400px; margin-top: 15px">
+        <div class="form-headers" style="padding-left: 25px">
+            <div class="img" style="padding-left: 130px">
+                <img src="{{ url_for('static', filename='logo.ico') }}" alt="front-img">
+            </div>
+            <div class="text" style="padding-bottom: 20px; padding-left: 40px; font-family: cursive; color: black">
+                <h2><i>Register, Your account</i></h2>
+            </div>
+        </div>
+        <div class="container">
+            <div class="card-box" style="padding-left: 20px">
+                <div class="card" style="width: 25rem; background-color: #f5ddb8; opacity: 0.9;">
+                    <div class="card-body">
+                        <form method="POST">
+                            {{ register_form.hidden_tag() }}
+                            {{ register_form.username.label }}{{ register_form.username() }}<br/>
+                            <span style="padding-left: 20px;">{{ register_form.email.label }}{{ register_form.email() }}</span><br/>
+                            {{ register_form.password.label }}{{ register_form.password() }}<br/>
+                            {{ register_form.conform_password.label }}{{ register_form.conform_password() }}<br/>
+                            {{ register_form.submit(class="btn btn-dark") }}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="register-options" style="padding: 40px; padding-left: 80px">
+           <button type="button" class="btn btn-primary btn-lg"><img src="{{ url_for('static', filename='facebook-logo.ico') }}"
+                                                                     width="25" height="25">Join with</button>
+            <span style="margin-left: 10px">
+                <button type="button" class="btn btn-primary btn-lg">
+                    <img src="{{ url_for('static', filename='twitter-logo.ico') }}"  width="25" height="25">
+                    Join with</button>
+            </span>
+            <p style="padding-left: 20px; padding-top: 10px">Join us with Facebook and Twitter</p>
+        </div>
+    </div>
+{% endblock %}

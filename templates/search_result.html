@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="icon" href="{{ url_for('static', filename='logo.ico') }}">
+
+    <title>Fruit Basket</title>
+</head>
+<body>
+<div class="header" style="height: 10rem; background-color: #3b94b3">
+    <div class="card" style="background-color: #e4f2f5;">
+        <div class="card-body">
+            <div class="elements" style="margin-left: 340px">
+                <span class="Brand-name" style="font-family: cursive; font-size: xx-large; padding-left: 100px"> <img
+                        src="{{ url_for('static', filename='logo.ico') }}" alt="logo" width="60px" height="60px">Fruit Basket</span>
+                <form method="POST" style="margin-top: 10px;">
+                    {{ searchForm.hidden_tag() }}
+                    {{ searchForm.searchBar.label }}{{ searchForm.searchBar(placeholder='Search',class="rounded",
+                    style="height: 40px; width: 500px", value=value) }}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ url_for('home') }}">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('shipping') }}">Shipping</a>
+        </li>
+    </ul>
+<div class="container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+<div class="side-bottom" style="padding-top: 20px; padding-left: 40px">
+    <div class="container">
+        {% for product in products %}
+        <div class="card mb-3" style="max-width: 800px;">
+            <div class="row no-gutters">
+                <div class="col-md-4" style="background-size: cover">
+                    <img src="{{ product.image_url }}" class="card-img" alt="product-img">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.productName }}</h5>
+                        <p class="card-text">{{ product.description }}</p>
+                        <a href="{{ url_for('product_info', product_id=product.productId) }}"
+                           type="button" class="btn btn-primary btn-lg btn-block">
+                            Just at &#x20B9;{{ product.price }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</body>
+</html>
