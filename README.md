@@ -7,4 +7,4 @@ A online imaginary shopping cart website that let users to buy fruit.
 - Flask-Bcrypt
 - Flask-SQLAlchemy
 - Flask-wtf
-
+- Pillow
